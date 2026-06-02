@@ -5,11 +5,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc -b && vite build",
-    "serve:backend": "cd .. && .\\.venv\\Scripts\\python.exe -B -m nku_search.serve --host 127.0.0.1 --port 8000"
+    "serve:backend": "cd .. && python -B -m nku_search.serve --host 127.0.0.1 --port 8000"
   },
   "dependencies": {
     "@ant-design/icons": "^5.6.1",
-    "@ant-design/pro-components": "^2.8.10",
     "antd": "^5.22.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

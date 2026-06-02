@@ -8,8 +8,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          antd: ['antd', '@ant-design/icons'],
-          pro: ['@ant-design/pro-components']
+          antd: ['antd', '@ant-design/icons']
         }
       }
     }
