@@ -1,0 +1,28 @@
+[project]
+name = "nku-search"
+version = "0.1.0"
+description = "NKU campus web search engine homework project"
+requires-python = ">=3.10"
+dependencies = [
+  "beautifulsoup4==4.12.3",
+  "elasticsearch==8.15.1",
+  "fastapi==0.115.2",
+  "httpx==0.27.2",
+  "jinja2==3.1.4",
+  "jieba==0.42.1",
+  "lxml==5.3.0",
+  "openpyxl==3.1.5",
+  "passlib[bcrypt]==1.7.4",
+  "pdfplumber==0.11.4",
+  "python-docx==1.1.2",
+  "python-multipart==0.0.12",
+  "pytest==8.3.3",
+  "scrapy==2.11.2",
+  "Twisted==23.10.0",
+  "uvicorn[standard]==0.32.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = ["-p", "no:cacheprovider"]

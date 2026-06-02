@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}南开资源搜索{% endblock %}
+{% block content %}
+<section class="search-shell">
+  <h1>南开资源搜索</h1>
+  <form class="search-form" action="/search" method="get">
+    <input id="searchBox" name="q" type="search" autocomplete="off" placeholder="输入关键词、短语或通配符" autofocus>
+    <button type="submit">搜索</button>
+    <div id="suggestions" class="suggestions"></div>
+    <div class="filters">
+      <label>站内
+        <input name="site" type="url" placeholder="https://news.nankai.edu.cn/">
+      </label>
+      <label>文件
+        <select name="filetype">
+          <option value="">全部</option>
+          <option value="html">网页</option>
+          <option value="pdf">PDF</option>
+          <option value="docx">DOCX</option>
+          <option value="xlsx">XLSX</option>
+        </select>
+      </label>
+      <label>模式
+        <select name="mode">
+          <option value="">自动</option>
+          <option value="normal">普通</option>
+          <option value="phrase">短语</option>
+          <option value="wildcard">通配</option>
+          <option value="regex">正则</option>
+        </select>
+      </label>
+    </div>
+  </form>
+  {% if suggestions %}
+  <div class="quick-links">
+    {% for item in suggestions %}
+      <a href="/search?q={{ item }}">{{ item }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
+  <p class="muted">当前后端：{{ backend }}。未启动 Elasticsearch 时会使用样例数据演示。</p>
+</section>
+{% endblock %}
+

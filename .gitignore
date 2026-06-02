@@ -1,0 +1,40 @@
+# Python environments and caches
+.venv/
+.uv-cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Node environments and frontend build output
+.npm-cache/
+frontend/node_modules/
+frontend/dist/
+*.tsbuildinfo
+
+# Runtime data: crawl output, snapshots, SQLite, Elasticsearch volumes, logs
+data/
+elasticsearch-data/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Reference repositories cloned for study
+references/
+
+# Packaging/build artifacts
+dist/
+build/
+
+# Local configuration and secrets
+.env
+.env.*
+
+# Editor/OS noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}查询日志{% endblock %}
+{% block content %}
+<section class="panel wide">
+  <h1>查询日志</h1>
+  <table>
+    <thead>
+      <tr><th>时间</th><th>查询</th><th>模式</th><th>站点</th><th>文件</th><th>结果数</th></tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <td>{{ row.created_at }}</td>
+        <td><a href="/search?q={{ row.query }}">{{ row.query }}</a></td>
+        <td>{{ row.mode }}</td>
+        <td>{{ row.site or "" }}</td>
+        <td>{{ row.filetype or "" }}</td>
+        <td>{{ row.result_count }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6">暂无查询记录。</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
+

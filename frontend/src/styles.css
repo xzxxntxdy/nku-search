@@ -1,0 +1,195 @@
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  background: #f4f7fb;
+}
+
+.shell {
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid #e5e7eb;
+}
+
+.logoBlock {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  height: 72px;
+  padding: 0 20px;
+}
+
+.logoMark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  color: #ffffff;
+  font-weight: 800;
+  background: #0f766e;
+}
+
+.subtle {
+  color: #667085;
+  font-size: 12px;
+}
+
+.topHeader {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid #e5e7eb;
+  backdrop-filter: blur(12px);
+}
+
+.content {
+  padding: 24px;
+  overflow: auto;
+}
+
+.full {
+  width: 100%;
+}
+
+.searchHero {
+  border: 0;
+  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.07);
+}
+
+.searchBoxItem,
+.compactFormItem {
+  margin-bottom: 0;
+}
+
+.compactFormItem .ant-form-item-label {
+  padding-bottom: 4px;
+}
+
+.topicDeck {
+  align-items: stretch;
+}
+
+.topicDeck .ant-col {
+  display: flex;
+}
+
+.topicCard {
+  width: 100%;
+  height: 100%;
+  border-color: #e5e7eb;
+}
+
+.resultCard {
+  width: 100%;
+  border-color: #e5e7eb;
+}
+
+.resultMain {
+  min-width: 0;
+  flex: 1;
+}
+
+.resultTitle {
+  display: block;
+  color: #0f4c81;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.resultUrl {
+  margin: 4px 0 8px;
+  color: #0f766e;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.facetLine {
+  display: grid;
+  grid-template-columns: 160px 1fr 32px;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.facetBlock {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.facetButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 32px;
+  padding-inline: 10px;
+}
+
+.facetCount {
+  min-width: 34px;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  color: #0f766e;
+  background: #d9f3ee;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.facetButton.ant-btn-primary .facetCount {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.recommendBar {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.recommendList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.recommendList .ant-btn {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accountCard {
+  height: 100%;
+  border-color: #e5e7eb;
+}
+
+.tagDeck {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+@media (max-width: 960px) {
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+}

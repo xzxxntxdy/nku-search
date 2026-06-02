@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}搜索结果 - {{ query.q }}{% endblock %}
+{% block content %}
+<section class="results-layout">
+  <form class="search-form compact" action="/search" method="get">
+    <input id="searchBox" name="q" type="search" autocomplete="off" value="{{ query.q }}">
+    <button type="submit">搜索</button>
+    <div id="suggestions" class="suggestions"></div>
+    <div class="filters">
+      <label>站内 <input name="site" type="url" value="{{ query.site or '' }}"></label>
+      <label>文件
+        <select name="filetype">
+          <option value="" {% if not query.filetype %}selected{% endif %}>全部</option>
+          {% for value in ["html", "pdf", "docx", "xlsx"] %}
+          <option value="{{ value }}" {% if query.filetype == value %}selected{% endif %}>{{ value|upper }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>模式
+        <select name="mode">
+          {% for value, label in [("", "自动"), ("normal", "普通"), ("phrase", "短语"), ("wildcard", "通配"), ("regex", "正则")] %}
+          <option value="{{ value }}" {% if query.mode == value %}selected{% endif %}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    </div>
+  </form>
+  <div class="meta">
+    共 {{ total }} 条结果，模式 {{ query.mode }}，后端 {{ backend }}
+    {% if diagnostics %}，耗时 {{ diagnostics.took_ms }} ms，候选 {{ diagnostics.total_candidates }}{% endif %}
+  </div>
+  {% if diagnostics and diagnostics.facets %}
+  <aside class="facets">
+    {% for facet in diagnostics.facets %}
+    <div>
+      <strong>{{ facet.name }}</strong>
+      {% for key, value in facet.buckets.items() %}
+        <a href="/search?q={{ query.q }}{% if facet.name == 'filetype' %}&filetype={{ key }}{% endif %}">{{ key }} {{ value }}</a>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </aside>
+  {% endif %}
+  <ol class="results">
+    {% for hit in hits %}
+      <li class="result-item">
+        <a class="result-title" href="{{ hit.url }}" target="_blank" rel="noreferrer">{{ hit.title }}</a>
+        <div class="url">{{ hit.url }}</div>
+        <p>{{ hit.snippet|safe }}</p>
+        <div class="result-actions">
+          <span>{{ hit.filetype|upper }}</span>
+          <span>score {{ "%.3f"|format(hit.score) }}</span>
+          <span>PageRank {{ "%.3f"|format(hit.pagerank) }}</span>
+          {% if hit.matched_terms %}<span>命中 {{ hit.matched_terms|join(", ") }}</span>{% endif %}
+          <a href="/snapshot/{{ hit.doc_id }}" target="_blank">网页快照</a>
+        </div>
+        {% if hit.explanation %}
+        <details class="explain">
+          <summary>排序解释</summary>
+          <pre>{{ hit.explanation }}</pre>
+        </details>
+        {% endif %}
+      </li>
+    {% else %}
+      <li class="empty">没有找到结果。</li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}
