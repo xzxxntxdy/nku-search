@@ -173,15 +173,3 @@ cd ..
 ```
 
 当前验证记录：Python 测试 `67 passed, 3 warnings`；真实 Elasticsearch 索引 `nku_pages` 已验证 `135779` 条文档；普通查询、短语查询、站内查询、文档查询、通配查询、正则查询、登录注册、历史、点击日志、网页快照和联想推荐均可用。
-
-## Git 忽略策略
-
-`.gitignore` 已排除：
-
-- `.venv/`、`.uv-cache/`、`.npm-cache/`
-- `frontend/node_modules/`、`frontend/dist/`
-- `data/`、`elasticsearch-data/`
-- `references/`
-- `dist/`、`build/`
-- `.env`、日志、SQLite 数据库和缓存目录
-

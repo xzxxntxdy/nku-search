@@ -32,6 +32,7 @@ build/
 # Local configuration and secrets
 .env
 .env.*
+AGENTS.md
 
 # Editor/OS noise
 .DS_Store
