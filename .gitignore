@@ -29,6 +29,33 @@ references/
 dist/
 build/
 
+# LaTeX sources and build outputs
+*.tex
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# Report directory policy: keep only final PDFs and figures in Git.
+report/*
+!report/
+!report/fig/
+!report/fig/**
+!report/*.pdf
+
 # Local configuration and secrets
 .env
 .env.*
