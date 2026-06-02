@@ -21,23 +21,26 @@ Scrapy + Elasticsearch + FastAPI + SQLite + React + Vite + Ant Design
 
 ## 快速启动
 
-Windows CMD 或 PowerShell 均可。第一次 clone 后先安装依赖：
+以下命令均假定在 Git 仓库根目录执行。第一次使用时先 clone 项目并安装依赖：
 
-```bat
-cd /d D:\hw4
+```powershell
+git clone https://github.com/xzxxntxdy/nku-search.git
+cd nku-search
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 cd frontend
-npm.cmd install --cache ..\.npm-cache
+npm install --cache ..\.npm-cache
 cd ..
 ```
 
+Linux/macOS 使用 `source .venv/bin/activate` 激活虚拟环境。激活后，后续命令统一使用 `python -m ...`，避免绑定到某台机器的绝对路径。
+
 启动 Elasticsearch 和单端口 Web 服务：
 
-```bat
-cd /d D:\hw4
+```powershell
 docker compose up -d elasticsearch
-.\.venv\Scripts\python.exe -B -m nku_search.serve --host 127.0.0.1 --port 8000
+python -B -m nku_search.serve --host 127.0.0.1 --port 8000
 ```
 
 访问：
@@ -50,7 +53,7 @@ http://127.0.0.1:8000
 
 ## 健康检查
 
-```bat
+```powershell
 curl http://127.0.0.1:8000/health
 ```
 
@@ -67,15 +70,15 @@ curl http://127.0.0.1:8000/health
 
 仓库不提交真实 `data/` 目录。首次 clone 后可以先用内置样例建立小索引：
 
-```bat
+```powershell
 docker compose up -d elasticsearch
-.\.venv\Scripts\python.exe -B -m nku_search.index --reset
+python -B -m nku_search.index --reset
 ```
 
 如果本机已有真实爬取结果，将 JSONL 放在 `data/crawl/` 后执行：
 
-```bat
-.\.venv\Scripts\python.exe -B -m nku_search.index --input data/crawl/pages_160k_clean.jsonl --reset
+```powershell
+python -B -m nku_search.index --input data/crawl/pages_160k_clean.jsonl --reset
 ```
 
 索引阶段会计算 PageRank、写入 Elasticsearch、保存快照到 `data/snapshots/`，并把联想词写入 SQLite。
@@ -84,20 +87,20 @@ docker compose up -d elasticsearch
 
 查看 16 万页默认主题计划：
 
-```bat
-.\.venv\Scripts\python.exe -B -m nku_search.crawl --list-sections
+```powershell
+python -B -m nku_search.crawl --list-sections
 ```
 
 执行完整高价值抓取：
 
-```bat
-.\.venv\Scripts\python.exe -B -m nku_search.crawl --max-pages 160000 --output data/crawl/pages_160k.jsonl
+```powershell
+python -B -m nku_search.crawl --max-pages 160000 --output data/crawl/pages_160k.jsonl
 ```
 
 清洗数据：
 
-```bat
-.\.venv\Scripts\python.exe -B -m nku_search.clean --input data/crawl/pages_160k.jsonl --output data/crawl/pages_160k_clean.jsonl
+```powershell
+python -B -m nku_search.clean --input data/crawl/pages_160k.jsonl --output data/crawl/pages_160k_clean.jsonl
 ```
 
 默认板块预算：
@@ -165,10 +168,10 @@ docker-compose.yml       Elasticsearch 8.15.1
 
 ## 测试
 
-```bat
-.\.venv\Scripts\python.exe -B -m pytest
+```powershell
+python -B -m pytest
 cd frontend
-npm.cmd run build
+npm run build
 cd ..
 ```
 

@@ -112,7 +112,7 @@
 ## 本次验证记录
 
 - Python 测试：`67 passed, 3 warnings`。
-- 前端构建：`npm.cmd run build` 通过。
+- 前端构建：`npm run build` 通过。
 - Elasticsearch：Docker Desktop 启动后已验证，集群 `green`，`nku_pages` 文档数 `135779`，`max_result_window=200000`。`/health` 返回 `SearchBackend`。
 - JSONL 数据：`data/crawl/pages_160k_clean.jsonl` 有 135779 条有效记录。
 - 快照：`data/snapshots` 有 135781 个文件。
@@ -125,7 +125,7 @@
 
 ```powershell
 docker compose up -d elasticsearch
-.\.venv\Scripts\python.exe -B -m nku_search.serve --host 127.0.0.1 --port 8000
+python -B -m nku_search.serve --host 127.0.0.1 --port 8000
 ```
 
 
