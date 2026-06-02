@@ -25,6 +25,9 @@ elasticsearch-data/
 # Reference repositories cloned for study
 references/
 
+# Local presentation artifacts
+docs/演示视频脚本.md
+
 # Packaging/build artifacts
 dist/
 build/
