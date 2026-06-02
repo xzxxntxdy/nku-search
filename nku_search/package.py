@@ -72,7 +72,7 @@ def build_package(name: str) -> Path:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Package homework submission.")
-    parser.add_argument("--name", default="STUDENT_ID_NAME", help="Student id and name prefix.")
+    parser.add_argument("--name", default="2412235_匡航逸", help="Student id and name prefix.")
     return parser.parse_args()
 
 
